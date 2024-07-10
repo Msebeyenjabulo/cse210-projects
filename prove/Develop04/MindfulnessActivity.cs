@@ -3,7 +3,7 @@ using System.Threading;
 
 public abstract class MindfulnessActivity
 {
-    protected string ActivityName;
+    public string ActivityName { get; private set; }
     protected string Description;
     protected int Duration;
 
