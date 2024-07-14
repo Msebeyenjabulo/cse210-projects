@@ -1,14 +1,10 @@
+using System;
+
 namespace EternalQuest
 {
     public class SimpleGoal : Goal
     {
         private bool _isComplete;
-
-        public bool IsComplete
-        {
-            get => _isComplete;
-            set => _isComplete = value;
-        }
 
         public SimpleGoal(string name, string description, int points) 
             : base(name, description, points)
