@@ -1,26 +1,25 @@
-using System;
-
-namespace EternalQuest
+public class Goal
 {
-    public abstract class Goal
+    public string Name { get; set; }
+    public string Description { get; set; }
+    public int Points { get; set; }
+    public bool IsCompleted { get; set; }
+
+    public Goal(string name, string description, int points)
     {
-        protected string _shortName;
-        protected string _description;
-        protected int _points;
+        Name = name;
+        Description = description;
+        Points = points;
+        IsCompleted = false;
+    }
 
-        public string Name => _shortName;
-        public int Points => _points;
+    public virtual void RecordEvent()
+    {
+        IsCompleted = true;
+    }
 
-        protected Goal(string name, string description, int points)
-        {
-            _shortName = name;
-            _description = description;
-            _points = points;
-        }
-
-        public abstract void RecordEvent();
-        public abstract bool IsComplete();
-        public abstract string GetDetailsString();
-        public abstract string GetStringRepresentation();
+    public virtual string GetStatus()
+    {
+        return IsCompleted ? "[X] " + Name : "[ ] " + Name;
     }
 }

@@ -1,45 +1,32 @@
-using System;
-
-namespace EternalQuest
+public class ChecklistGoal : Goal
 {
-    public class ChecklistGoal : Goal
+    public int RequiredCompletions { get; set; }
+    public int CurrentCompletions { get; set; }
+    public int BonusPoints { get; set; }
+
+    public ChecklistGoal(string name, string description, int points, int requiredCompletions, int bonusPoints) 
+        : base(name, description, points)
     {
-        private int _amountCompleted;
-        private int _target;
-        private int _bonus;
+        RequiredCompletions = requiredCompletions;
+        CurrentCompletions = 0;
+        BonusPoints = bonusPoints;
+    }
 
-        public int AmountCompleted { get; internal set; }
-
-        public ChecklistGoal(string name, string description, int points, int target, int bonus) 
-            : base(name, description, points)
+    public override void RecordEvent()
+    {
+        if (CurrentCompletions < RequiredCompletions)
         {
-            _amountCompleted = 0;
-            _target = target;
-            _bonus = bonus;
-        }
-
-        public override void RecordEvent()
-        {
-            _amountCompleted++;
-            if (_amountCompleted >= _target)
+            CurrentCompletions++;
+            if (CurrentCompletions == RequiredCompletions)
             {
-                _points += _bonus;
+                Points += BonusPoints;
+                IsCompleted = true;
             }
         }
+    }
 
-        public override bool IsComplete()
-        {
-            return _amountCompleted >= _target;
-        }
-
-        public override string GetDetailsString()
-        {
-            return $"ChecklistGoal: {_shortName} - {_description} [Completed {_amountCompleted}/{_target}]";
-        }
-
-        public override string GetStringRepresentation()
-        {
-            return $"ChecklistGoal:{_shortName},{_description},{_points},{_amountCompleted},{_target},{_bonus}";
-        }
+    public override string GetStatus()
+    {
+        return $"{(IsCompleted ? "[X] " : "[ ] ")} {Name} (Completed {CurrentCompletions}/{RequiredCompletions} times)";
     }
 }
