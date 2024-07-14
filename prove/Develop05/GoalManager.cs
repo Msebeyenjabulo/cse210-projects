@@ -4,8 +4,8 @@ using System.Linq;
 
 public class GoalManager
 {
-    private List<Goal> _goals = new List<Goal>();
-    private int _score = 0;
+    private List<Goal> goals = new List<Goal>();
+    private int score = 0;
 
     public void Run()
     {
@@ -88,7 +88,7 @@ public class GoalManager
                 return;
         }
 
-        _goals.Add(goal);
+        goals.Add(goal);
         Console.WriteLine("Goal added successfully.");
     }
 
@@ -97,11 +97,11 @@ public class GoalManager
         Console.WriteLine("Enter goal name to record event: ");
         string name = Console.ReadLine();
 
-        var goal = _goals.FirstOrDefault(g => g.Name == name);
+        var goal = goals.FirstOrDefault(g => g.Name == name);
         if (goal != null)
         {
             goal.RecordEvent();
-            _score += goal.Points;
+            score += goal.Points;
             Console.WriteLine("Event recorded.");
         }
         else
@@ -112,7 +112,7 @@ public class GoalManager
 
     private void DisplayGoals()
     {
-        foreach (var goal in _goals)
+        foreach (var goal in goals)
         {
             Console.WriteLine(goal.GetStatus());
         }
@@ -120,16 +120,16 @@ public class GoalManager
 
     private void DisplayScore()
     {
-        Console.WriteLine("Current Score: " + _score);
+        Console.WriteLine("Current Score: " + score);
     }
 
     private void SaveGoals()
     {
-        // Code to save goals and score to a file
+        // save goals and score to a file
     }
 
     private void LoadGoals()
     {
-        // Code to load goals and score from a file
+        // load goals and score from a file
     }
 }

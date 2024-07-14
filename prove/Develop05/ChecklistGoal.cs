@@ -1,29 +1,25 @@
 public class ChecklistGoal : Goal
 {
-    private int _requiredCompletions;
-    private int _currentCompletions;
-    private int _bonusPoints;
-
-    public int RequiredCompletions { get { return _requiredCompletions; } }
-    public int CurrentCompletions { get { return _currentCompletions; } }
-    public int BonusPoints { get { return _bonusPoints; } }
+    public int RequiredCompletions { get; set; }
+    public int CurrentCompletions { get; set; }
+    public int BonusPoints { get; set; }
 
     public ChecklistGoal(string name, string description, int points, int requiredCompletions, int bonusPoints) 
         : base(name, description, points)
     {
-        _requiredCompletions = requiredCompletions;
-        _currentCompletions = 0;
-        _bonusPoints = bonusPoints;
+        RequiredCompletions = requiredCompletions;
+        CurrentCompletions = 0;
+        BonusPoints = bonusPoints;
     }
 
     public override void RecordEvent()
     {
-        if (_currentCompletions < _requiredCompletions)
+        if (CurrentCompletions < RequiredCompletions)
         {
-            _currentCompletions++;
-            if (_currentCompletions == _requiredCompletions)
+            CurrentCompletions++;
+            if (CurrentCompletions == RequiredCompletions)
             {
-                Points += _bonusPoints;
+                Points += BonusPoints;
                 IsCompleted = true;
             }
         }
@@ -31,6 +27,6 @@ public class ChecklistGoal : Goal
 
     public override string GetStatus()
     {
-        return $"{(IsCompleted ? "[X] " : "[ ] ")} {Name} (Completed {_currentCompletions}/{_requiredCompletions} times)";
+        return $"{(IsCompleted ? "[X] " : "[ ] ")} {Name} (Completed {CurrentCompletions}/{RequiredCompletions} times)";
     }
 }
