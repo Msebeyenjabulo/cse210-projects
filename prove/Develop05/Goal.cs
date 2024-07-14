@@ -7,8 +7,16 @@ public class Goal
 
     public string Name { get { return _name; } }
     public string Description { get { return _description; } }
-    public int Points { get { return _points; } }
-    public bool IsCompleted { get { return _isCompleted; } }
+    public int Points
+    {
+        get { return _points; }
+        protected set { _points = value; }
+    }
+    public bool IsCompleted
+    {
+        get { return _isCompleted; }
+        protected set { _isCompleted = value; }
+    }
 
     public Goal(string name, string description, int points)
     {
