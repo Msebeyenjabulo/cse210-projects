@@ -130,6 +130,6 @@ public class GoalManager
 
     private void LoadGoals()
     {
-        // load goals and score from a file
+        // Code to load goals and score from a file
     }
 }

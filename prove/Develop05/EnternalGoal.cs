@@ -4,7 +4,7 @@ public class EternalGoal : Goal
 
     public override void RecordEvent()
     {
-        // Eternal goals are never fully completed, only recorded
+        // eternal goals are never fully completed, only recorded
     }
 
     public override string GetStatus()
