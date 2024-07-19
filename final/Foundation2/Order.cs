@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Text;
+
 public class Order
 {
     private List<Product> Products { get; set; }
@@ -23,11 +26,11 @@ public class Order
         }
         if (Customer.LivesInUSA())
         {
-            total += 5;
+            total += 5; // Shipping cost for USA
         }
         else
         {
-            total += 35;
+            total += 35; // Shipping cost for international
         }
         return total;
     }

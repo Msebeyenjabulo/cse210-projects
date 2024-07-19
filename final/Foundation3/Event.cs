@@ -1,25 +1,3 @@
-public class Address
-{
-    public string Street { get; set; }
-    public string City { get; set; }
-    public string State { get; set; }
-    public string Country { get; set; }
-    
-    public Address(string street, string city, string state, string country)
-    {
-        Street = street;
-        City = city;
-        State = state;
-        Country = country;
-    }
-    
-    public string GetFullAddress()
-    {
-        return $"{Street}, {City}, {State}, {Country}";
-    }
-}
-
-
 public class Event
 {
     public string Title { get; set; }
@@ -52,4 +30,3 @@ public class Event
         return $"{Title} - {Date} {Time}";
     }
 }
-

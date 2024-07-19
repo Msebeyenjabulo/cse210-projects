@@ -18,4 +18,3 @@ public class Product
         return Price * Quantity;
     }
 }
-
